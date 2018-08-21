@@ -2,7 +2,7 @@
   <div id="menu">
     <div class="container" style="height: 100%; display: flex; align-items: center; overflow: hidde">
       <div class="content">
-        <span><i class="fas fa-search"></i></span>
+        <span><i class="fas fa-search" v-on:click="forceSearch"></i></span>
         <input type="text" class="searchbox mx-3" name="" v-model="searchTerm" placeholder="What's needed?"/>
         <span class="d-md-flex d-none">
           <a class="d-flex align-items-center ml-3" target="_blank" href="https://github.com/lunaroyster/relief-camp-data"><i class="fab fa-github"></i></a>
@@ -28,6 +28,11 @@ export default {
       set (value) {
         this.$store.commit('updateSearchTerm', value);
       }
+    }
+  },
+  methods: {
+    forceSearch() {
+      this.$root.$emit('forceSearch');  
     }
   },
 };

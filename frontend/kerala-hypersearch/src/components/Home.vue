@@ -35,6 +35,12 @@ export default {
       return this.$store.state.searchTerm;
     },
   },
+  methods: {
+    doSearch(term) {
+      this.results = fuse.search(term);
+      this.updateTime = Date.now();
+    }
+  },
   async mounted() {
     setInterval(()=> {
       if(!this.updateTime || Date.now() - this.updateTime < 1000) return;
@@ -55,11 +61,13 @@ export default {
       ]
     }
     fuse = new Fuse(this.resources, fuseConfig);
+    this.$root.$on('forceSearch', ()=> {
+      this.doSearch(this.searchTerm);
+    });
   },
   watch: {
     searchTerm(term, exTerm) {
-      this.results = fuse.search(term);
-      this.updateTime = Date.now();
+      this.doSearch(term);
     }
   }
 };
