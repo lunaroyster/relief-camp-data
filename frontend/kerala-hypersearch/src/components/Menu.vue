@@ -6,7 +6,7 @@
           <i class="fas fa-search"></i>
           <!--<i class="material-icons">search</i>-->
         </span>
-        <input type="text" class="searchbox mx-3" name="" v-model="searchTerm"/>
+        <input type="text" class="searchbox mx-3" name="" v-model="searchTerm" placeholder="What's needed?"/>
       </div>
     </div>
   </div>

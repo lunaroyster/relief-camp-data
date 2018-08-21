@@ -1,3 +1,8 @@
 $enable-rounded: false;
 
+body {
+  overflow-y: scroll;
+}
+
+
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
