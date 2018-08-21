@@ -8,7 +8,7 @@ async function getResourcesSheet() {
     let sheet = await gsjson({
         spreadsheetId,
         credentials,
-        worksheet: 2,
+        worksheet: 'Resources  (#RSC)',
         headerStart: 3,
         ignoreRow: [4,5,6]
     });
@@ -19,7 +19,7 @@ async function getReliefCampsSheet() {
     let sheet = await gsjson({
         spreadsheetId,
         credentials,
-        worksheet: 1,
+        worksheet: 'Relief Camps (#Camp)',
         headerStart: 1,
         ignoreRow: [2]
     });
@@ -30,7 +30,7 @@ async function getVolunteersSheet() {
     let sheet = await gsjson({
         spreadsheetId,
         credentials,
-        worksheet: 3,
+        worksheet: 'Volunteers',
         headerStart: 3,
         ignoreRow: []
     });
