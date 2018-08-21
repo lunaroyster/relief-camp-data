@@ -6,7 +6,7 @@
           <i class="fas fa-search"></i>
           <!--<i class="material-icons">search</i>-->
         </span>
-        <input type="text" class="searchbox mx-3" name=""/>
+        <input type="text" class="searchbox mx-3" name="" v-model="searchTerm"/>
       </div>
     </div>
   </div>
@@ -18,6 +18,16 @@ export default {
   name: 'Menu',
   data() {
     return {};
+  },
+  computed: {
+    searchTerm: {
+      get () {
+        return this.$store.state.searchTerm;
+      },
+      set (value) {
+        this.$store.commit('updateSearchTerm', value);
+      }
+    }
   },
 };
 

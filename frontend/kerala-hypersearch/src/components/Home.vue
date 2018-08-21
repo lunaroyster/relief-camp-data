@@ -20,6 +20,11 @@ export default {
   data() {
     return {};
   },
+  async mounted() {
+    let volunteers = await dataService.getVolunteers();
+    let fuse = new Fuse(volunteers, {});
+    
+  }
 };
 
 </script>
