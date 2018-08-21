@@ -3,6 +3,7 @@
     <Menu/>
     <div class="container">
       <ResourceCard v-for="result in results.slice(0,25)" :resource="result.item"/>
+      <div class="loading-text text-muted my-5" v-if="!resources">Fetching resources</div>
     </div>
   </div>
 </template>
@@ -25,6 +26,7 @@ export default {
   data() {
     return {
       results: [],
+      resources: null,
       updateTime: null,
     };
   },
@@ -39,7 +41,7 @@ export default {
       window.gtag('event', 'search', {value: this.searchTerm.length});
       this.updateTime = null;
     }, 1000);
-    let resources = await dataService.getResources();
+    this.resources = await dataService.getResources();
     let fuseConfig = {
       shouldSort: true,
       includeScore: true,
@@ -52,7 +54,7 @@ export default {
         "resourcesAvailableWithThem"
       ]
     }
-    fuse = new Fuse(resources, fuseConfig);
+    fuse = new Fuse(this.resources, fuseConfig);
   },
   watch: {
     searchTerm(term, exTerm) {
@@ -64,6 +66,10 @@ export default {
 
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.loading-text {
+  text-align: center;
+  font-weight: 100;
+  font-size: 1.5em;
+}
 </style>
