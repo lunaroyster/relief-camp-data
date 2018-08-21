@@ -2,10 +2,11 @@ const functions = require('firebase-functions');
 
 const gsjson = require('google-spreadsheet-to-json');
 const credentials = require('./serviceAccount');
+const spreadsheetId = '1NPeYz_nWKW_sbQ2nK4JH2re3hKk2qW4rWjg6Y0HbJW4';
 
 async function getResourcesSheet() {
     let sheet = await gsjson({
-        spreadsheetId: '1NPeYz_nWKW_sbQ2nK4JH2re3hKk2qW4rWjg6Y0HbJW4',
+        spreadsheetId,
         credentials,
         worksheet: 2,
         headerStart: 3,
@@ -16,7 +17,7 @@ async function getResourcesSheet() {
 
 async function getReliefCampsSheet() {
     let sheet = await gsjson({
-        spreadsheetId: '1NPeYz_nWKW_sbQ2nK4JH2re3hKk2qW4rWjg6Y0HbJW4',
+        spreadsheetId,
         credentials,
         worksheet: 1,
         headerStart: 1,
@@ -27,7 +28,7 @@ async function getReliefCampsSheet() {
 
 async function getVolunteersSheet() {
     let sheet = await gsjson({
-        spreadsheetId: '1NPeYz_nWKW_sbQ2nK4JH2re3hKk2qW4rWjg6Y0HbJW4',
+        spreadsheetId,
         credentials,
         worksheet: 3,
         headerStart: 3,
