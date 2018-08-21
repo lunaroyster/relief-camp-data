@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       results: [],
+      updateTime: null,
     };
   },
   computed: {
@@ -33,6 +34,11 @@ export default {
     },
   },
   async mounted() {
+    setInterval(()=> {
+      if(!this.updateTime || Date.now() - this.updateTime < 1000) return;
+      window.gtag('event', 'search', {value: this.searchTerm.length});
+      this.updateTime = null;
+    }, 1000);
     let resources = await dataService.getResources();
     let fuseConfig = {
       shouldSort: true,
@@ -51,6 +57,7 @@ export default {
   watch: {
     searchTerm(term, exTerm) {
       this.results = fuse.search(term);
+      this.updateTime = Date.now();
     }
   }
 };
