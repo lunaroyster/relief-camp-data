@@ -9,6 +9,7 @@ class DataService {
     this.eventCallbacks = {
       volunteerDownload: [],
       reliefCampsDownload: [],
+      resourcesDownload: [],
     };
   }
   async getVolunteers() {
