@@ -7,8 +7,10 @@
 <script>
 import Menu from '@/components/Menu';
 import dataService from '@/services/data';
+import Fuse from 'fuse.js';
 
-console.log(dataService)
+console.log(dataService);
+console.log(Fuse);
 
 export default {
   name: 'Home',
