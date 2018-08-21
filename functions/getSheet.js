@@ -1,12 +1,12 @@
 const functions = require('firebase-functions');
 
 const gsjson = require('google-spreadsheet-to-json');
-const token = functions.config().googlesheets.token
+const credentials = require('./serviceAccount');
 
 async function getResourcesSheet() {
     let sheet = await gsjson({
         spreadsheetId: '1NPeYz_nWKW_sbQ2nK4JH2re3hKk2qW4rWjg6Y0HbJW4',
-        token,
+        credentials,
         worksheet: 2,
         headerStart: 3,
         ignoreRow: [4,5,6]
@@ -17,7 +17,7 @@ async function getResourcesSheet() {
 async function getReliefCampsSheet() {
     let sheet = await gsjson({
         spreadsheetId: '1NPeYz_nWKW_sbQ2nK4JH2re3hKk2qW4rWjg6Y0HbJW4',
-        token,
+        credentials,
         worksheet: 1,
         headerStart: 1,
         ignoreRow: [2]
@@ -28,7 +28,7 @@ async function getReliefCampsSheet() {
 async function getVolunteersSheet() {
     let sheet = await gsjson({
         spreadsheetId: '1NPeYz_nWKW_sbQ2nK4JH2re3hKk2qW4rWjg6Y0HbJW4',
-        token,
+        credentials,
         worksheet: 3,
         headerStart: 3,
         ignoreRow: []
