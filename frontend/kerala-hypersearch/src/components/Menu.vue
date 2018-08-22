@@ -4,7 +4,7 @@
       <div class="container">
         <div class="content">
           <span><i class="fas fa-search" v-on:click="forceSearch"></i></span>
-          <input type="text" class="searchbox mx-3" name="" v-model="searchTerm" placeholder="What's needed?"/>
+          <input type="text" class="searchbox mx-3" name="" v-model="searchTerm" :placeholder="searchPlaceholder"/>
           <i class="fas fa-sliders-h d-flex align-items-center ml-3 pointer" v-on:click="toggleConfigBar()"></i>
           <span class="d-md-flex d-none">
             <a class="d-flex align-items-center ml-3" target="_blank" href="https://github.com/lunaroyster/relief-camp-data"><i class="fab fa-github"></i></a>
@@ -16,10 +16,10 @@
     <div class="configbar" v-bind:class="{visible: showConfigBar}">
       <div class="container" style="color: white">
         <span class="text-muted">I'm looking for</span>
-        <select id="searchType" class="p-2">
-          <option>Resources</option>
-          <option>Relief camps</option>
-          <option>Volunteers</option>
+        <select id="searchType" v-model="searchType" class="p-2">
+          <option value="resources">Resources</option>
+          <option value="reliefCamps">Relief camps</option>
+          <option value="volunteers">Volunteers</option>
         </select>
       </div>
     </div>
@@ -43,6 +43,22 @@ export default {
       set (value) {
         this.$store.commit('updateSearchTerm', value);
       }
+    },
+    searchType: {
+      get () {
+        return this.$store.state.searchType;
+      },
+      set (value) {
+        this.$store.commit('updateSearchType', value);
+      }
+    },
+    searchPlaceholder() {
+      let placeholders = {
+        "resources": "What's needed?",
+        "reliefCamps": "What can you provide?",
+        "volunteers": "Use names or phone numbers"
+      };
+      return placeholders[this.searchType];
     }
   },
   methods: {
