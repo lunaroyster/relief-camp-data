@@ -18,7 +18,6 @@ export default {
     return {
       results: null,
       resources: null,
-      updateTime: null,
     };
   },
   components: {
@@ -32,15 +31,9 @@ export default {
   methods: {
     doSearch(term) {
       this.results = fuse.search(term);
-      this.updateTime = Date.now();
     }
   },
   async mounted() {
-    setInterval(()=> {
-      if(!this.updateTime || Date.now() - this.updateTime < 1000) return;
-      window.gtag('event', 'search', {value: this.searchTerm.length});
-      this.updateTime = null;
-    }, 1000);
     this.resources = await dataService.getResources();
     let fuseConfig = {
       shouldSort: true,
@@ -50,9 +43,7 @@ export default {
       distance: 100,
       maxPatternLength: 32,
       minMatchCharLength: 1,
-      keys: [
-        "resourcesAvailableWithThem"
-      ]
+      keys: ["resourcesAvailableWithThem"]
     };
     fuse = new Fuse(this.resources, fuseConfig);
     this.$root.$on('forceSearch', ()=> {
