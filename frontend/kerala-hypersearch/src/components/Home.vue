@@ -2,7 +2,7 @@
   <div>
     <Menu/>
     <ResourceSearch v-if="searchType == 'resources'"/>
-    <!--<ResourceSearch v-if="searchType == 'resources'"/>-->
+    <ReliefCampSearch v-if="searchType == 'reliefCamps'"/>
     <!--<ResourceSearch v-if="searchType == 'resources'"/>-->
   </div>
 </template>
@@ -11,12 +11,14 @@
 import Menu from '@/components/Menu';
 
 import ResourceSearch from '@/components/ResourceSearch';
+import ReliefCampSearch from '@/components/ReliefCampSearch';
 
 export default {
   name: 'Home',
   components: {
     Menu,
     ResourceSearch,
+    ReliefCampSearch,
   },
   data() {
     return {
