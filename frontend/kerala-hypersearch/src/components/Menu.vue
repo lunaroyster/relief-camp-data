@@ -19,7 +19,7 @@
         <select id="searchType" v-model="searchType" class="p-2">
           <option value="resources">Resources</option>
           <option value="reliefCamps">Relief camps</option>
-          <option value="volunteers">Volunteers</option>
+          <!--<option value="volunteers">Volunteers</option>-->
         </select>
       </div>
     </div>
